@@ -2,7 +2,8 @@
 import type { SelectItemProps } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { reactiveOmit } from "@vueuse/core"
-import { Check } from "lucide-vue-next"
+import { HugeiconsIcon } from '@hugeicons/vue'
+import { Tick01Icon } from '@hugeicons/core-free-icons'
 import {
   SelectItem,
   SelectItemIndicator,
@@ -32,7 +33,7 @@ const forwardedProps = useForwardProps(delegatedProps)
   >
     <span class="absolute right-2 flex size-3.5 items-center justify-center">
       <SelectItemIndicator>
-        <Check class="size-4" />
+        <HugeiconsIcon :icon="Tick01Icon" :size="16" color="currentColor" :stroke-width="1.5" />
       </SelectItemIndicator>
     </span>
 

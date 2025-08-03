@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { LucideIcon } from "lucide-vue-next"
+import type { Component } from "vue"
+import { HugeiconsIcon } from '@hugeicons/vue'
 import {
-  Folder,
-  Forward,
-
-  MoreHorizontal,
-  Trash2,
-} from "lucide-vue-next"
+  Folder01Icon,
+  Forward02Icon,
+  MoreHorizontalIcon,
+  Delete02Icon,
+} from '@hugeicons/core-free-icons'
 
 import {
   DropdownMenu,
@@ -29,7 +29,7 @@ defineProps<{
   projects: {
     name: string
     url: string
-    icon: LucideIcon
+    icon: Component
   }[]
 }>()
 
@@ -50,7 +50,7 @@ const { isMobile } = useSidebar()
         <DropdownMenu>
           <DropdownMenuTrigger as-child>
             <SidebarMenuAction show-on-hover>
-              <MoreHorizontal />
+              <HugeiconsIcon :icon="MoreHorizontalIcon" :size="16" color="currentColor" :stroke-width="1.5" />
               <span class="sr-only">More</span>
             </SidebarMenuAction>
           </DropdownMenuTrigger>
@@ -60,16 +60,16 @@ const { isMobile } = useSidebar()
             :align="isMobile ? 'end' : 'start'"
           >
             <DropdownMenuItem>
-              <Folder class="text-muted-foreground" />
+              <HugeiconsIcon :icon="Folder01Icon" :size="16" color="currentColor" :stroke-width="1.5" class="text-muted-foreground" />
               <span>View Project</span>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Forward class="text-muted-foreground" />
+              <HugeiconsIcon :icon="Forward02Icon" :size="16" color="currentColor" :stroke-width="1.5" class="text-muted-foreground" />
               <span>Share Project</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Trash2 class="text-muted-foreground" />
+              <HugeiconsIcon :icon="Delete02Icon" :size="16" color="currentColor" :stroke-width="1.5" class="text-muted-foreground" />
               <span>Delete Project</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -77,7 +77,7 @@ const { isMobile } = useSidebar()
       </SidebarMenuItem>
       <SidebarMenuItem>
         <SidebarMenuButton class="text-sidebar-foreground/70">
-          <MoreHorizontal class="text-sidebar-foreground/70" />
+          <HugeiconsIcon :icon="MoreHorizontalIcon" :size="16" color="currentColor" :stroke-width="1.5" class="text-sidebar-foreground/70" />
           <span>More</span>
         </SidebarMenuButton>
       </SidebarMenuItem>

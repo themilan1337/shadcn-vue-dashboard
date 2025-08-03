@@ -1,12 +1,13 @@
 <script setup lang="ts">
+import { HugeiconsIcon } from '@hugeicons/vue'
 import {
-  BadgeCheck,
-  Bell,
-  ChevronsUpDown,
-  CreditCard,
-  LogOut,
-  Sparkles,
-} from "lucide-vue-next"
+  CheckmarkBadge01Icon,
+  Notification01Icon,
+  ArrowUpDownIcon,
+  CreditCardIcon,
+  Logout01Icon,
+  SparklesIcon,
+} from '@hugeicons/core-free-icons'
 import { Icon } from '@iconify/vue'
 import { useColorMode } from '@vueuse/core'
 
@@ -62,7 +63,7 @@ const mode = useColorMode()
               <span class="truncate font-medium">{{ user.name }}</span>
               <span class="truncate text-xs">{{ user.email }}</span>
             </div>
-            <ChevronsUpDown class="ml-auto size-4" />
+            <HugeiconsIcon :icon="ArrowUpDownIcon" :size="16" color="currentColor" :stroke-width="1.5" class="ml-auto" />
           </SidebarMenuButton>
         </DropdownMenuTrigger>
         <DropdownMenuContent
@@ -88,22 +89,22 @@ const mode = useColorMode()
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
-              <Sparkles />
+              <HugeiconsIcon :icon="SparklesIcon" :size="16" color="currentColor" :stroke-width="1.5" />
               Upgrade to Pro
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
-              <BadgeCheck />
+              <HugeiconsIcon :icon="CheckmarkBadge01Icon" :size="16" color="currentColor" :stroke-width="1.5" />
               Account
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <CreditCard />
+              <HugeiconsIcon :icon="CreditCardIcon" :size="16" color="currentColor" :stroke-width="1.5" />
               Billing
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Bell />
+              <HugeiconsIcon :icon="Notification01Icon" :size="16" color="currentColor" :stroke-width="1.5" />
               Notifications
             </DropdownMenuItem>
           </DropdownMenuGroup>
@@ -124,7 +125,7 @@ const mode = useColorMode()
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <LogOut />
+            <HugeiconsIcon :icon="Logout01Icon" :size="16" color="currentColor" :stroke-width="1.5" />
             Log out
           </DropdownMenuItem>
         </DropdownMenuContent>

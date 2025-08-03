@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { HTMLAttributes } from "vue"
-import { ChevronRight } from "lucide-vue-next"
+import { HugeiconsIcon } from '@hugeicons/vue'
+import { ArrowRight01Icon } from '@hugeicons/core-free-icons'
 import { cn } from "@/lib/utils"
 
 const props = defineProps<{
@@ -16,7 +17,7 @@ const props = defineProps<{
     :class="cn('[&>svg]:size-3.5', props.class)"
   >
     <slot>
-      <ChevronRight />
+      <HugeiconsIcon :icon="ArrowRight01Icon" :size="14" color="currentColor" :stroke-width="1.5" />
     </slot>
   </li>
 </template>

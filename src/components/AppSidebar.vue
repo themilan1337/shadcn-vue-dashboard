@@ -2,9 +2,6 @@
 import { h } from 'vue'
 import type { SidebarProps } from '@/components/ui/sidebar'
 
-import { HugeiconsIcon } from '@hugeicons/vue';
-import { Settings02Icon } from '@hugeicons/core-free-icons';
-
 // Custom Settings Icon Component
 const SettingsIcon = {
   name: 'SettingsIcon',
@@ -41,15 +38,17 @@ const SettingsIcon = {
 }
 
 
-import {
-  BookOpen,
-  Bot,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
-  SquareTerminal,
-} from "lucide-vue-next"
+import { HugeiconsIcon } from '@hugeicons/vue'
+import { 
+  DashboardSquare01Icon, 
+  Analytics01Icon, 
+  TouchInteraction01Icon, 
+  Settings02Icon,
+  KeyframeIcon,
+  CarouselHorizontalIcon,
+  MapsIcon,
+  PieChartIcon
+} from '@hugeicons/core-free-icons'
 import NavMain from '@/components/NavMain.vue'
 import NavProjects from '@/components/NavProjects.vue'
 import NavUser from '@/components/NavUser.vue'
@@ -77,7 +76,16 @@ const data = {
   teams: [
     {
       name: "Moniq",
-      logo: GalleryVerticalEnd,
+      logo: {
+        render() {
+          return h(HugeiconsIcon, {
+            icon: CarouselHorizontalIcon,
+            size: 16,
+            color: "currentColor",
+            strokeWidth: 1.5
+          })
+        }
+      },
       plan: "Pro",
     },
   ],
@@ -85,7 +93,16 @@ const data = {
     {
       title: "Dashboard",
       url: "/",
-      icon: SquareTerminal,
+      icon: {
+        render() {
+          return h(HugeiconsIcon, {
+            icon: DashboardSquare01Icon,
+            size: 16,
+            color: "currentColor",
+            strokeWidth: 1.5
+          })
+        }
+      },
       isActive: true,
       items: [
         {
@@ -105,7 +122,16 @@ const data = {
     {
       title: "Monitoring",
       url: "/",
-      icon: Bot,
+      icon: {
+        render() {
+          return h(HugeiconsIcon, {
+            icon: Analytics01Icon,
+            size: 16,
+            color: "currentColor",
+            strokeWidth: 1.5
+          })
+        }
+      },
       items: [
         {
           title: "Real-time Stats",
@@ -124,7 +150,16 @@ const data = {
     {
       title: "Integrations",
       url: "/",
-      icon: BookOpen,
+      icon: {
+        render() {
+          return h(HugeiconsIcon, {
+            icon: TouchInteraction01Icon,
+            size: 16,
+            color: "currentColor",
+            strokeWidth: 1.5
+          })
+        }
+      },
       items: [
         {
           title: "Telegram Setup",
@@ -151,7 +186,7 @@ const data = {
         render() {
           return h(HugeiconsIcon, {
             icon: Settings02Icon,
-            size: 24,
+            size: 16,
             color: "currentColor",
             strokeWidth: 1.5
           })
@@ -181,17 +216,44 @@ const data = {
     {
       name: "Server Monitoring",
       url: "/",
-      icon: Frame,
+      icon: {
+        render() {
+          return h(HugeiconsIcon, {
+            icon: KeyframeIcon,
+            size: 16,
+            color: "currentColor",
+            strokeWidth: 1.5
+          })
+        }
+      },
     },
     {
       name: "Alert Management",
       url: "/",
-      icon: PieChart,
+      icon: {
+        render() {
+          return h(HugeiconsIcon, {
+            icon: PieChartIcon,
+            size: 16,
+            color: "currentColor",
+            strokeWidth: 1.5
+          })
+        }
+      },
     },
     {
       name: "Telegram Bots",
       url: "/",
-      icon: Map,
+      icon: {
+        render() {
+          return h(HugeiconsIcon, {
+            icon: MapsIcon,
+            size: 16,
+            color: "currentColor",
+            strokeWidth: 1.5
+          })
+        }
+      },
     },
   ],
 }

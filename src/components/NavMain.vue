@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import type { LucideIcon } from "lucide-vue-next"
-import { ChevronRight } from "lucide-vue-next"
+import type { Component } from 'vue'
+import { HugeiconsIcon } from '@hugeicons/vue'
+import { ArrowRight01Icon } from '@hugeicons/core-free-icons';
 import {
   Collapsible,
   CollapsibleContent,
@@ -21,7 +22,7 @@ defineProps<{
   items: {
     title: string
     url: string
-    icon?: LucideIcon
+    icon?: Component
     isActive?: boolean
     items?: {
       title: string
@@ -47,7 +48,13 @@ defineProps<{
             <SidebarMenuButton :tooltip="item.title">
               <component :is="item.icon" v-if="item.icon" />
               <span>{{ item.title }}</span>
-              <ChevronRight class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+              <HugeiconsIcon 
+                :icon="ArrowRight01Icon" 
+                :size="16" 
+                color="currentColor" 
+                :stroke-width="1.5" 
+                class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" 
+              />
             </SidebarMenuButton>
           </CollapsibleTrigger>
           <CollapsibleContent>

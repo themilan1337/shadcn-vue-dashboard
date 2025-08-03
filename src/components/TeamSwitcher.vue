@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { Component } from "vue"
 
-import { ChevronsUpDown, Plus } from "lucide-vue-next"
+import { HugeiconsIcon } from '@hugeicons/vue'
+import { ArrowUpDownIcon, Add01Icon } from '@hugeicons/core-free-icons'
 import { ref } from "vue"
 import {
   DropdownMenu,
@@ -50,7 +51,7 @@ const activeTeam = ref(props.teams[0])
               </span>
               <span class="truncate text-xs">{{ activeTeam.plan }}</span>
             </div>
-            <ChevronsUpDown class="ml-auto" />
+            <HugeiconsIcon :icon="ArrowUpDownIcon" :size="16" color="currentColor" :stroke-width="1.5" class="ml-auto" />
           </SidebarMenuButton>
         </DropdownMenuTrigger>
         <DropdownMenuContent
@@ -77,7 +78,7 @@ const activeTeam = ref(props.teams[0])
           <DropdownMenuSeparator />
           <DropdownMenuItem class="gap-2 p-2">
             <div class="flex size-6 items-center justify-center rounded-md border bg-transparent">
-              <Plus class="size-4" />
+              <HugeiconsIcon :icon="Add01Icon" :size="16" color="currentColor" :stroke-width="1.5" />
             </div>
             <div class="font-medium text-muted-foreground">
               Add team
