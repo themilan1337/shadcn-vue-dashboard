@@ -73,14 +73,9 @@ const breadcrumbItems = computed(() => {
         </header>
         <div class="flex flex-1 flex-col p-4 pt-0 relative overflow-hidden">
           <Transition 
-            name="page" 
+            name="fade"
             mode="out-in"
-            enter-active-class="transition-all duration-300 ease-out"
-            enter-from-class="opacity-0"
-            enter-to-class="opacity-100"
-            leave-active-class="transition-all duration-200 ease-in"
-            leave-from-class="opacity-100"
-            leave-to-class="opacity-0"
+            appear
           >
             <RouterView />
           </Transition>
@@ -90,3 +85,20 @@ const breadcrumbItems = computed(() => {
     <Toaster />
   </div>
 </template>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
+</style>

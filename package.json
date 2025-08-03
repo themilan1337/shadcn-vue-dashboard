@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hugeicons/core-free-icons": "^1.0.16",
+    "@hugeicons/vue": "^1.0.3",
     "@tailwindcss/vite": "^4.1.11",
     "@vueuse/core": "^13.6.0",
     "chart.js": "^4.5.0",
