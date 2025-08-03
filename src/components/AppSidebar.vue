@@ -30,131 +30,121 @@ const props = withDefaults(defineProps<SidebarProps>(), {
   collapsible: "icon",
 })
 
-// This is sample data.
+// Navigation data for Moniq dashboard
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "John Doe",
+    email: "john.doe@example.com",
+    avatar: "https://i.pravatar.cc/40?u=john.doe@example.com",
   },
   teams: [
     {
-      name: "Acme Inc",
+      name: "Moniq",
       logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
+      plan: "Pro",
     },
   ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
+      title: "Dashboard",
+      url: "/",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
-          url: "#",
+          title: "Overview",
+          url: "/",
         },
         {
-          title: "Starred",
-          url: "#",
+          title: "Server Status",
+          url: "/",
         },
         {
-          title: "Settings",
-          url: "#",
+          title: "Alerts",
+          url: "/",
         },
       ],
     },
     {
-      title: "Models",
-      url: "#",
+      title: "Monitoring",
+      url: "/",
       icon: Bot,
       items: [
         {
-          title: "Genesis",
-          url: "#",
+          title: "Real-time Stats",
+          url: "/",
         },
         {
-          title: "Explorer",
-          url: "#",
+          title: "Performance",
+          url: "/",
         },
         {
-          title: "Quantum",
-          url: "#",
+          title: "Uptime",
+          url: "/",
         },
       ],
     },
     {
-      title: "Documentation",
-      url: "#",
+      title: "Integrations",
+      url: "/",
       icon: BookOpen,
       items: [
         {
-          title: "Introduction",
-          url: "#",
+          title: "Telegram Setup",
+          url: "/",
         },
         {
-          title: "Get Started",
-          url: "#",
+          title: "API Documentation",
+          url: "/",
         },
         {
-          title: "Tutorials",
-          url: "#",
+          title: "Webhooks",
+          url: "/",
         },
         {
-          title: "Changelog",
-          url: "#",
+          title: "Support",
+          url: "/",
         },
       ],
     },
     {
-      title: "Settings",
-      url: "#",
+      title: "Account",
+      url: "/settings",
       icon: Settings2,
       items: [
         {
-          title: "General",
-          url: "#",
+          title: "Profile",
+          url: "/settings",
         },
         {
-          title: "Team",
-          url: "#",
+          title: "Notifications",
+          url: "/settings",
         },
         {
           title: "Billing",
-          url: "#",
+          url: "/billing",
         },
         {
-          title: "Limits",
-          url: "#",
+          title: "API Keys",
+          url: "/settings",
         },
       ],
     },
   ],
   projects: [
     {
-      name: "Design Engineering",
-      url: "#",
+      name: "Server Monitoring",
+      url: "/",
       icon: Frame,
     },
     {
-      name: "Sales & Marketing",
-      url: "#",
+      name: "Alert Management",
+      url: "/",
       icon: PieChart,
     },
     {
-      name: "Travel",
-      url: "#",
+      name: "Telegram Bots",
+      url: "/",
       icon: Map,
     },
   ],

@@ -7,6 +7,8 @@ import {
   LogOut,
   Sparkles,
 } from "lucide-vue-next"
+import { Icon } from '@iconify/vue'
+import { useColorMode } from '@vueuse/core'
 
 import {
   Avatar,
@@ -38,6 +40,7 @@ defineProps<{
 }>()
 
 const { isMobile } = useSidebar()
+const mode = useColorMode()
 </script>
 
 <template>
@@ -102,6 +105,21 @@ const { isMobile } = useSidebar()
             <DropdownMenuItem>
               <Bell />
               Notifications
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuItem @click="mode = 'light'">
+              <Icon icon="radix-icons:sun" class="h-4 w-4" />
+              Light
+            </DropdownMenuItem>
+            <DropdownMenuItem @click="mode = 'dark'">
+              <Icon icon="radix-icons:moon" class="h-4 w-4" />
+              Dark
+            </DropdownMenuItem>
+            <DropdownMenuItem @click="mode = 'auto'">
+              <Icon icon="radix-icons:desktop" class="h-4 w-4" />
+              System
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
