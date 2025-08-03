@@ -217,7 +217,6 @@ import {
   Receipt, 
   Download
 } from 'lucide-vue-next'
-import { toast } from 'vue-sonner'
 
 // Types
 interface BillingData {

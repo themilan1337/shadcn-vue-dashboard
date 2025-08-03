@@ -367,10 +367,8 @@ import {
   MessageSquare, 
   Zap,
   LogIn,
-  Settings,
-  Globe
+  Settings
 } from 'lucide-vue-next'
-import { toast } from 'vue-sonner'
 
 // Types
 interface UserData {
