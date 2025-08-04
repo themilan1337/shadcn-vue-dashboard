@@ -22,15 +22,17 @@ import {
 } from '@/components/ui/sidebar'
 
 const props = defineProps<{
-  teams: {
+  servers: {
     name: string
     logo: Component
-    plan: string
+    ip: string
+    status: 'up' | 'down'
+    os: string
   }[]
 }>()
 
 const { isMobile } = useSidebar()
-const activeTeam = ref(props.teams[0])
+const activeServer = ref(props.servers[0])
 </script>
 
 <template>
@@ -43,13 +45,16 @@ const activeTeam = ref(props.teams[0])
             class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
           >
             <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-              <component :is="activeTeam.logo" class="size-4" />
+              <component :is="activeServer.logo" class="size-4" />
             </div>
             <div class="grid flex-1 text-left text-sm leading-tight">
-              <span class="truncate font-medium">
-                {{ activeTeam.name }}
-              </span>
-              <span class="truncate text-xs">{{ activeTeam.plan }}</span>
+              <div class="flex items-center gap-2">
+                <span class="truncate font-medium">
+                  {{ activeServer.name }}
+                </span>
+                <div :class="['w-2 h-2 rounded-full', activeServer.status === 'up' ? 'bg-green-500' : 'bg-red-500']"></div>
+              </div>
+              <span class="truncate text-xs">{{ activeServer.ip }} • {{ activeServer.os }}</span>
             </div>
             <HugeiconsIcon :icon="ArrowUpDownIcon" :size="16" color="currentColor" :stroke-width="1.5" class="ml-auto" />
           </SidebarMenuButton>
@@ -61,18 +66,24 @@ const activeTeam = ref(props.teams[0])
           :side-offset="4"
         >
           <DropdownMenuLabel class="text-xs text-muted-foreground">
-            Teams
+            Servers
           </DropdownMenuLabel>
           <DropdownMenuItem
-            v-for="(team, index) in teams"
-            :key="team.name"
+            v-for="(server, index) in servers"
+            :key="server.name"
             class="gap-2 p-2"
-            @click="activeTeam = team"
+            @click="activeServer = server"
           >
             <div class="flex size-6 items-center justify-center rounded-sm border">
-              <component :is="team.logo" class="size-3.5 shrink-0" />
+              <component :is="server.logo" class="size-3.5 shrink-0" />
             </div>
-            {{ team.name }}
+            <div class="flex-1">
+              <div class="flex items-center gap-2">
+                <span class="font-medium">{{ server.name }}</span>
+                <div :class="['w-2 h-2 rounded-full', server.status === 'up' ? 'bg-green-500' : 'bg-red-500']"></div>
+              </div>
+              <div class="text-xs text-muted-foreground">{{ server.ip }} • {{ server.os }}</div>
+            </div>
             <DropdownMenuShortcut>⌘{{ index + 1 }}</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
@@ -81,7 +92,7 @@ const activeTeam = ref(props.teams[0])
               <HugeiconsIcon :icon="Add01Icon" :size="16" color="currentColor" :stroke-width="1.5" />
             </div>
             <div class="font-medium text-muted-foreground">
-              Add team
+              Add server
             </div>
           </DropdownMenuItem>
         </DropdownMenuContent>

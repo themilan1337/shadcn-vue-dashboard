@@ -75,7 +75,10 @@
     "apiServer": "API сервері",
     "highCpuUsage": "Процессордың жоғары пайдалануы",
     "memoryWarning": "Жады туралы ескерту",
-    "minutesAgo": "минут бұрын"
+    "minutesAgo": "минут бұрын",
+    "serverUp": "Жұмыс істейді",
+    "serverDown": "Жұмыс істемейді",
+    "memoryUsage": "Жады пайдалануы"
   },
   "billing": {
     "title": "Төлем және пайдалану",

@@ -75,7 +75,10 @@
     "apiServer": "API сервер",
     "highCpuUsage": "Высокое использование ЦП",
     "memoryWarning": "Предупреждение о памяти",
-    "minutesAgo": "минут назад"
+    "minutesAgo": "минут назад",
+    "serverUp": "Работает",
+    "serverDown": "Не работает",
+    "memoryUsage": "Использование памяти"
   },
   "billing": {
     "title": "Биллинг и использование",

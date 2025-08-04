@@ -76,20 +76,63 @@ const data = computed(() => ({
     email: "john.doe@example.com",
     avatar: "https://i.pravatar.cc/40?u=john.doe@example.com",
   },
-  teams: [
+  servers: [
     {
-      name: "Moniq",
+      name: "Ubuntu Server 01",
       logo: {
         render() {
-          return h(HugeiconsIcon, {
-            icon: CarouselHorizontalIcon,
-            size: 16,
-            color: "currentColor",
-            strokeWidth: 1.5
-          })
+          return h('svg', {
+            viewBox: '0 0 24 24',
+            fill: 'currentColor',
+            class: 'w-4 h-4'
+          }, [
+            h('path', {
+              d: 'M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.568 14.794a5.57 5.57 0 01-1.423 1.423l-.904-.904a4.686 4.686 0 001.327-3.313c0-1.287-.518-2.456-1.357-3.313l.904-.904a5.57 5.57 0 011.453 3.313c0 1.287-.518 2.456-1.357 3.313l.357.385z'
+            })
+          ])
         }
       },
-      plan: "Pro",
+      ip: "192.168.1.100",
+      status: "up" as const,
+      os: "Ubuntu 22.04",
+    },
+    {
+      name: "CentOS Server 02",
+      logo: {
+        render() {
+          return h('svg', {
+            viewBox: '0 0 24 24',
+            fill: 'currentColor',
+            class: 'w-4 h-4'
+          }, [
+            h('path', {
+              d: 'M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2a10 10 0 110 20 10 10 0 010-20z'
+            })
+          ])
+        }
+      },
+      ip: "192.168.1.101",
+      status: "down" as const,
+      os: "CentOS 8",
+    },
+    {
+      name: "Windows Server 03",
+      logo: {
+        render() {
+          return h('svg', {
+            viewBox: '0 0 24 24',
+            fill: 'currentColor',
+            class: 'w-4 h-4'
+          }, [
+            h('path', {
+              d: 'M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.351'
+            })
+          ])
+        }
+      },
+      ip: "192.168.1.102",
+      status: "up" as const,
+      os: "Windows Server 2022",
     },
   ],
   navMain: [
@@ -265,7 +308,7 @@ const data = computed(() => ({
 <template>
   <Sidebar v-bind="props">
     <SidebarHeader>
-      <TeamSwitcher :teams="data.teams" />
+      <TeamSwitcher :servers="data.servers" />
     </SidebarHeader>
     <SidebarContent>
       <NavMain :items="data.navMain" />

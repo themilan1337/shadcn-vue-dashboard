@@ -75,7 +75,10 @@
     "apiServer": "API Server",
     "highCpuUsage": "High CPU Usage",
     "memoryWarning": "Memory Warning",
-    "minutesAgo": "minutes ago"
+    "minutesAgo": "minutes ago",
+    "serverUp": "Up",
+    "serverDown": "Down",
+    "memoryUsage": "Memory Usage"
   },
   "billing": {
     "title": "Billing & Usage",
