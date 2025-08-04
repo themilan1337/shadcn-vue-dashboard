@@ -2,26 +2,26 @@
   <div class="space-y-6">
     <div class="flex items-center justify-between">
       <div>
-        <h1 class="text-3xl font-bold tracking-tight">Dashboard</h1>
-        <p class="text-muted-foreground">Monitor your servers and alerts in real-time</p>
+        <h1 class="text-3xl font-bold tracking-tight">{{ t('dashboard.title') }}</h1>
+        <p class="text-muted-foreground">{{ t('dashboard.subtitle') }}</p>
       </div>
     </div>
     
     <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       <div class="p-6 border rounded-lg">
-        <h3 class="text-lg font-semibold">Total Servers</h3>
+        <h3 class="text-lg font-semibold">{{ t('dashboard.totalServers') }}</h3>
         <p class="text-2xl font-bold">12</p>
       </div>
       <div class="p-6 border rounded-lg">
-        <h3 class="text-lg font-semibold">Active Alerts</h3>
+        <h3 class="text-lg font-semibold">{{ t('dashboard.activeAlerts') }}</h3>
         <p class="text-2xl font-bold text-red-500">3</p>
       </div>
       <div class="p-6 border rounded-lg">
-        <h3 class="text-lg font-semibold">System Uptime</h3>
+        <h3 class="text-lg font-semibold">{{ t('dashboard.systemUptime') }}</h3>
         <p class="text-2xl font-bold">99.9%</p>
       </div>
       <div class="p-6 border rounded-lg">
-        <h3 class="text-lg font-semibold">Telegram Groups</h3>
+        <h3 class="text-lg font-semibold">{{ t('dashboard.telegramGroups') }}</h3>
         <p class="text-2xl font-bold">5</p>
       </div>
     </div>
@@ -29,9 +29,9 @@
     <!-- Charts Section -->
     <div class="grid gap-6 md:grid-cols-2">
       <div class="p-6 border rounded-lg bg-card">
-        <h3 class="text-lg font-semibold mb-4">Server Performance (24h)</h3>
+        <h3 class="text-lg font-semibold mb-4">{{ t('dashboard.serverPerformance') }}</h3>
         <LineChart 
-          title="CPU Usage"
+          :title="t('dashboard.cpuUsage')"
           :data="cpuData"
           :labels="timeLabels"
           color="#3b82f6"
@@ -40,9 +40,9 @@
       </div>
       
       <div class="p-6 border rounded-lg bg-card">
-        <h3 class="text-lg font-semibold mb-4">Resource Distribution</h3>
+        <h3 class="text-lg font-semibold mb-4">{{ t('dashboard.resourceDistribution') }}</h3>
         <DoughnutChart 
-          title="System Resources"
+          :title="t('dashboard.systemResources')"
           :data="resourceData"
           :labels="resourceLabels"
           :colors="resourceColors"
@@ -52,33 +52,33 @@
     
     <div class="grid gap-6 md:grid-cols-2">
       <div class="p-6 border rounded-lg">
-        <h3 class="text-lg font-semibold mb-4">Server Status</h3>
+        <h3 class="text-lg font-semibold mb-4">{{ t('dashboard.serverStatus') }}</h3>
         <div class="space-y-2">
           <div class="flex justify-between items-center">
-            <span>Web Server 01</span>
-            <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-sm">Online</span>
+            <span>{{ t('dashboard.webServer01') }}</span>
+            <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-sm">{{ t('common.online') }}</span>
           </div>
           <div class="flex justify-between items-center">
-            <span>Database Server</span>
-            <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-sm">Online</span>
+            <span>{{ t('dashboard.databaseServer') }}</span>
+            <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-sm">{{ t('common.online') }}</span>
           </div>
           <div class="flex justify-between items-center">
-            <span>API Server</span>
-            <span class="px-2 py-1 bg-red-100 text-red-800 rounded text-sm">Offline</span>
+            <span>{{ t('dashboard.apiServer') }}</span>
+            <span class="px-2 py-1 bg-red-100 text-red-800 rounded text-sm">{{ t('common.offline') }}</span>
           </div>
         </div>
       </div>
       
       <div class="p-6 border rounded-lg">
-        <h3 class="text-lg font-semibold mb-4">Recent Alerts</h3>
+        <h3 class="text-lg font-semibold mb-4">{{ t('dashboard.recentAlerts') }}</h3>
         <div class="space-y-2">
           <div class="p-3 bg-red-50 border border-red-200 rounded">
-            <p class="text-sm font-medium text-red-800">High CPU Usage</p>
-            <p class="text-xs text-red-600">API Server - 2 minutes ago</p>
+            <p class="text-sm font-medium text-red-800">{{ t('dashboard.highCpuUsage') }}</p>
+            <p class="text-xs text-red-600">{{ t('dashboard.apiServer') }} - 2 {{ t('dashboard.minutesAgo') }}</p>
           </div>
           <div class="p-3 bg-yellow-50 border border-yellow-200 rounded">
-            <p class="text-sm font-medium text-yellow-800">Memory Warning</p>
-            <p class="text-xs text-yellow-600">Web Server 01 - 15 minutes ago</p>
+            <p class="text-sm font-medium text-yellow-800">{{ t('dashboard.memoryWarning') }}</p>
+            <p class="text-xs text-yellow-600">{{ t('dashboard.webServer01') }} - 15 {{ t('dashboard.minutesAgo') }}</p>
           </div>
         </div>
       </div>
@@ -88,8 +88,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import LineChart from '@/components/LineChart.vue'
 import DoughnutChart from '@/components/DoughnutChart.vue'
+
+const { t } = useI18n()
 
 // Sample data for CPU usage over 24 hours
 const cpuData = ref([45, 52, 48, 61, 55, 67, 73, 69, 58, 62, 71, 68, 75, 82, 78, 71, 65, 59, 63, 57, 51, 48, 44, 41])

@@ -7,9 +7,12 @@ import {
   CreditCardIcon,
   Logout01Icon,
   SparklesIcon,
+  GlobeIcon,
 } from '@hugeicons/core-free-icons'
 import { Icon } from '@iconify/vue'
 import { useColorMode } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
+import { availableLanguages, changeLanguage } from '@/i18n'
 
 import {
   Avatar,
@@ -42,6 +45,15 @@ defineProps<{
 
 const { isMobile } = useSidebar()
 const mode = useColorMode()
+const { t, locale } = useI18n()
+
+const handleLanguageChange = (langCode: string) => {
+  changeLanguage(langCode)
+}
+
+const getCurrentLanguage = () => {
+  return availableLanguages.find(lang => lang.code === locale.value) || availableLanguages[0]
+}
 </script>
 
 <template>
@@ -90,43 +102,59 @@ const mode = useColorMode()
           <DropdownMenuGroup>
             <DropdownMenuItem>
               <HugeiconsIcon :icon="SparklesIcon" :size="16" color="currentColor" :stroke-width="1.5" />
-              Upgrade to Pro
+              {{ t('user.upgradeToPro') }}
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
               <HugeiconsIcon :icon="CheckmarkBadge01Icon" :size="16" color="currentColor" :stroke-width="1.5" />
-              Account
+              {{ t('user.account') }}
             </DropdownMenuItem>
             <DropdownMenuItem>
               <HugeiconsIcon :icon="CreditCardIcon" :size="16" color="currentColor" :stroke-width="1.5" />
-              Billing
+              {{ t('user.billing') }}
             </DropdownMenuItem>
             <DropdownMenuItem>
               <HugeiconsIcon :icon="Notification01Icon" :size="16" color="currentColor" :stroke-width="1.5" />
-              Notifications
+              {{ t('user.notifications') }}
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuLabel class="px-2 py-1.5 text-sm font-medium text-muted-foreground">
+              <HugeiconsIcon :icon="GlobeIcon" :size="16" color="currentColor" :stroke-width="1.5" class="inline mr-2" />
+              {{ t('user.language') }}
+            </DropdownMenuLabel>
+            <DropdownMenuItem 
+              v-for="language in availableLanguages" 
+              :key="language.code"
+              @click="handleLanguageChange(language.code)"
+              :class="{ 'bg-accent': locale === language.code }"
+            >
+              <img :src="language.flag" :alt="language.name" class="w-4 h-4 rounded-sm" />
+              {{ language.name }}
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem @click="mode = 'light'">
               <Icon icon="radix-icons:sun" class="h-4 w-4" />
-              Light
+              {{ t('user.theme.light') }}
             </DropdownMenuItem>
             <DropdownMenuItem @click="mode = 'dark'">
               <Icon icon="radix-icons:moon" class="h-4 w-4" />
-              Dark
+              {{ t('user.theme.dark') }}
             </DropdownMenuItem>
             <DropdownMenuItem @click="mode = 'auto'">
               <Icon icon="radix-icons:desktop" class="h-4 w-4" />
-              System
+              {{ t('user.theme.system') }}
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
             <HugeiconsIcon :icon="Logout01Icon" :size="16" color="currentColor" :stroke-width="1.5" />
-            Log out
+            {{ t('user.logOut') }}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

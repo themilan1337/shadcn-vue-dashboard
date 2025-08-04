@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { h } from 'vue'
+import { h, computed } from 'vue'
 import type { SidebarProps } from '@/components/ui/sidebar'
 
 // Custom Settings Icon Component
@@ -53,6 +53,7 @@ import NavMain from '@/components/NavMain.vue'
 import NavProjects from '@/components/NavProjects.vue'
 import NavUser from '@/components/NavUser.vue'
 import TeamSwitcher from '@/components/TeamSwitcher.vue'
+import { useI18n } from 'vue-i18n'
 
 import {
   Sidebar,
@@ -66,8 +67,10 @@ const props = withDefaults(defineProps<SidebarProps>(), {
   collapsible: "icon",
 })
 
+const { t } = useI18n()
+
 // Navigation data for Moniq dashboard
-const data = {
+const data = computed(() => ({
   user: {
     name: "John Doe",
     email: "john.doe@example.com",
@@ -91,7 +94,7 @@ const data = {
   ],
   navMain: [
     {
-      title: "Dashboard",
+      title: t('sidebar.dashboard'),
       url: "/",
       icon: {
         render() {
@@ -106,21 +109,21 @@ const data = {
       isActive: true,
       items: [
         {
-          title: "Overview",
+          title: t('sidebar.overview'),
           url: "/",
         },
         {
-          title: "Server Status",
+          title: t('sidebar.serverStatus'),
           url: "/",
         },
         {
-          title: "Alerts",
+          title: t('sidebar.alerts'),
           url: "/",
         },
       ],
     },
     {
-      title: "Monitoring",
+      title: t('sidebar.monitoring'),
       url: "/",
       icon: {
         render() {
@@ -134,21 +137,21 @@ const data = {
       },
       items: [
         {
-          title: "Real-time Stats",
+          title: t('sidebar.realTimeStats'),
           url: "/",
         },
         {
-          title: "Performance",
+          title: t('sidebar.performance'),
           url: "/",
         },
         {
-          title: "Uptime",
+          title: t('sidebar.uptime'),
           url: "/",
         },
       ],
     },
     {
-      title: "Integrations",
+      title: t('sidebar.integrations'),
       url: "/",
       icon: {
         render() {
@@ -162,25 +165,25 @@ const data = {
       },
       items: [
         {
-          title: "Telegram Setup",
+          title: t('sidebar.telegramSetup'),
           url: "/",
         },
         {
-          title: "API Documentation",
+          title: t('sidebar.apiDocumentation'),
           url: "/",
         },
         {
-          title: "Webhooks",
+          title: t('sidebar.webhooks'),
           url: "/",
         },
         {
-          title: "Support",
+          title: t('sidebar.support'),
           url: "/",
         },
       ],
     },
     {
-      title: "Account",
+      title: t('sidebar.account'),
       url: "/settings",
       icon: {
         render() {
@@ -194,19 +197,19 @@ const data = {
       },
       items: [
         {
-          title: "Profile",
+          title: t('sidebar.profile'),
           url: "/settings",
         },
         {
-          title: "Notifications",
+          title: t('sidebar.notifications'),
           url: "/settings",
         },
         {
-          title: "Billing",
+          title: t('sidebar.billing'),
           url: "/billing",
         },
         {
-          title: "API Keys",
+          title: t('sidebar.apiKeys'),
           url: "/settings",
         },
       ],
@@ -214,7 +217,7 @@ const data = {
   ],
   projects: [
     {
-      name: "Server Monitoring",
+      name: t('sidebar.serverMonitoring'),
       url: "/",
       icon: {
         render() {
@@ -228,7 +231,7 @@ const data = {
       },
     },
     {
-      name: "Alert Management",
+      name: t('sidebar.alertManagement'),
       url: "/",
       icon: {
         render() {
@@ -242,7 +245,7 @@ const data = {
       },
     },
     {
-      name: "Telegram Bots",
+      name: t('sidebar.telegramBots'),
       url: "/",
       icon: {
         render() {
@@ -256,7 +259,7 @@ const data = {
       },
     },
   ],
-}
+}))
 </script>
 
 <template>

@@ -2,15 +2,15 @@
   <div class="space-y-6">
     <!-- Header Section -->
     <div>
-      <h1 class="text-3xl font-bold tracking-tight">Account Settings</h1>
-      <p class="text-muted-foreground">Manage your profile, notifications, and API access</p>
+      <h1 class="text-3xl font-bold tracking-tight">{{ t('settings.title') }}</h1>
+      <p class="text-muted-foreground">{{ t('settings.subtitle') }}</p>
     </div>
 
     <Tabs default-value="profile" class="space-y-6">
       <TabsList class="grid w-full grid-cols-3">
-        <TabsTrigger value="profile">Profile</TabsTrigger>
-        <TabsTrigger value="notifications">Notifications</TabsTrigger>
-        <TabsTrigger value="api">API & Security</TabsTrigger>
+        <TabsTrigger value="profile">{{ t('settings.profile') }}</TabsTrigger>
+        <TabsTrigger value="notifications">{{ t('settings.notifications') }}</TabsTrigger>
+        <TabsTrigger value="api">{{ t('settings.apiSecurity') }}</TabsTrigger>
       </TabsList>
 
       <!-- Profile Tab -->
@@ -19,9 +19,9 @@
           <CardHeader>
             <CardTitle class="flex items-center gap-2">
               <User :size="20" />
-              Profile Information
+              {{ t('settings.profileInformation') }}
             </CardTitle>
-            <CardDescription>Update your personal information and preferences</CardDescription>
+            <CardDescription>{{ t('settings.updatePersonalInfo') }}</CardDescription>
           </CardHeader>
           <CardContent class="space-y-6">
             <div class="flex items-center gap-6">
@@ -39,35 +39,35 @@
                 <h3 class="text-lg font-semibold">{{ user.name }}</h3>
                 <p class="text-sm text-muted-foreground">{{ user.email }}</p>
                 <Badge :variant="user.telegramConnected ? 'default' : 'outline'" class="text-xs">
-                  {{ user.telegramConnected ? 'Telegram Connected' : 'Telegram Not Connected' }}
+                  {{ user.telegramConnected ? t('settings.telegramConnected') : t('settings.telegramNotConnected') }}
                 </Badge>
               </div>
             </div>
 
             <div class="grid gap-4 md:grid-cols-2">
               <div class="space-y-2">
-                <Label for="name">Full Name</Label>
-                <Input id="name" v-model="profileForm.name" placeholder="Enter your full name" />
+                <Label for="name">{{ t('settings.fullName') }}</Label>
+                <Input id="name" v-model="profileForm.name" :placeholder="t('settings.enterFullName')" />
               </div>
               <div class="space-y-2">
-                <Label for="email">Email Address</Label>
-                <Input id="email" v-model="profileForm.email" type="email" placeholder="Enter your email" />
+                <Label for="email">{{ t('settings.emailAddress') }}</Label>
+                <Input id="email" v-model="profileForm.email" type="email" :placeholder="t('settings.enterEmail')" />
               </div>
               <div class="space-y-2">
-                <Label for="company">Company</Label>
-                <Input id="company" v-model="profileForm.company" placeholder="Enter your company" />
+                <Label for="company">{{ t('settings.company') }}</Label>
+                <Input id="company" v-model="profileForm.company" :placeholder="t('settings.enterCompany')" />
               </div>
               <div class="space-y-2">
-                <Label for="timezone">Timezone</Label>
+                <Label for="timezone">{{ t('settings.timezone') }}</Label>
                 <Select v-model="profileForm.timezone">
                   <SelectTrigger>
-                    <SelectValue placeholder="Select timezone" />
+                    <SelectValue :placeholder="t('settings.selectTimezone')" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="UTC">UTC</SelectItem>
-                    <SelectItem value="EST">Eastern Time</SelectItem>
-                    <SelectItem value="PST">Pacific Time</SelectItem>
-                    <SelectItem value="CET">Central European Time</SelectItem>
+                    <SelectItem value="UTC">{{ t('common.utc') }}</SelectItem>
+                    <SelectItem value="EST">{{ t('common.easternTime') }}</SelectItem>
+                    <SelectItem value="PST">{{ t('common.pacificTime') }}</SelectItem>
+                    <SelectItem value="CET">{{ t('common.centralEuropeanTime') }}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -76,10 +76,10 @@
             <div class="flex gap-3">
               <Button @click="updateProfile" :disabled="isUpdating" class="gap-2">
                 <Save :size="16" />
-                {{ isUpdating ? 'Saving...' : 'Save Changes' }}
+                {{ isUpdating ? t('common.saving') : t('common.saveChanges') }}
               </Button>
               <Button variant="outline" @click="resetProfile">
-                Reset
+                {{ t('common.reset') }}
               </Button>
             </div>
           </CardContent>
@@ -92,32 +92,32 @@
           <CardHeader>
             <CardTitle class="flex items-center gap-2">
               <Bell :size="20" />
-              Notification Preferences
+              {{ t('settings.notificationPreferences') }}
             </CardTitle>
-            <CardDescription>Configure how you want to receive alerts and updates</CardDescription>
+            <CardDescription>{{ t('settings.configureAlerts') }}</CardDescription>
           </CardHeader>
           <CardContent class="space-y-6">
             <!-- Email Notifications -->
             <div class="space-y-4">
-              <div class="flex items-center justify-between">
-                <div class="space-y-1">
-                  <Label class="text-base font-medium">Email Notifications</Label>
-                  <p class="text-sm text-muted-foreground">Receive alerts and updates via email</p>
-                </div>
+                <div class="flex items-center justify-between">
+                  <div class="space-y-1">
+                    <Label class="text-base font-medium">{{ t('settings.emailNotifications') }}</Label>
+                    <p class="text-sm text-muted-foreground">{{ t('settings.receiveEmailAlerts') }}</p>
+                  </div>
                 <Switch v-model:checked="notificationSettings.email" />
               </div>
 
               <div v-if="notificationSettings.email" class="ml-6 space-y-3 border-l-2 border-muted pl-4">
                 <div class="flex items-center justify-between">
-                  <Label class="text-sm">Critical alerts</Label>
+                  <Label class="text-sm">{{ t('settings.criticalAlerts') }}</Label>
                   <Switch v-model:checked="notificationSettings.emailTypes.critical" />
                 </div>
                 <div class="flex items-center justify-between">
-                  <Label class="text-sm">Server status changes</Label>
+                  <Label class="text-sm">{{ t('settings.serverStatusChanges') }}</Label>
                   <Switch v-model:checked="notificationSettings.emailTypes.status" />
                 </div>
                 <div class="flex items-center justify-between">
-                  <Label class="text-sm">Weekly reports</Label>
+                  <Label class="text-sm">{{ t('settings.weeklyReports') }}</Label>
                   <Switch v-model:checked="notificationSettings.emailTypes.reports" />
                 </div>
               </div>
@@ -125,31 +125,31 @@
 
             <!-- Telegram Notifications -->
             <div class="space-y-4">
-              <div class="flex items-center justify-between">
-                <div class="space-y-1">
-                  <Label class="text-base font-medium">Telegram Notifications</Label>
-                  <p class="text-sm text-muted-foreground">Real-time alerts sent to your Telegram</p>
-                </div>
+                <div class="flex items-center justify-between">
+                  <div class="space-y-1">
+                    <Label class="text-base font-medium">{{ t('settings.telegramNotifications') }}</Label>
+                    <p class="text-sm text-muted-foreground">{{ t('settings.realtimeAlerts') }}</p>
+                  </div>
                 <div class="flex items-center gap-2">
                   <Switch v-model:checked="notificationSettings.telegram" :disabled="!user.telegramConnected" />
                   <Button v-if="!user.telegramConnected" @click="connectTelegram" size="sm" variant="outline" class="gap-2">
                     <MessageSquare :size="14" />
-                    Connect
+                    {{ t('settings.connect') }}
                   </Button>
                 </div>
               </div>
 
               <div v-if="notificationSettings.telegram && user.telegramConnected" class="ml-6 space-y-3 border-l-2 border-muted pl-4">
                 <div class="flex items-center justify-between">
-                  <Label class="text-sm">All alerts</Label>
+                  <Label class="text-sm">{{ t('settings.allAlerts') }}</Label>
                   <Switch v-model:checked="notificationSettings.telegramTypes.all" />
                 </div>
                 <div class="flex items-center justify-between">
-                  <Label class="text-sm">Critical only</Label>
+                  <Label class="text-sm">{{ t('settings.criticalOnly') }}</Label>
                   <Switch v-model:checked="notificationSettings.telegramTypes.critical" />
                 </div>
                 <div class="flex items-center justify-between">
-                  <Label class="text-sm">Server downtime</Label>
+                  <Label class="text-sm">{{ t('settings.serverDowntime') }}</Label>
                   <Switch v-model:checked="notificationSettings.telegramTypes.downtime" />
                 </div>
               </div>
@@ -159,25 +159,25 @@
             <div class="space-y-4">
               <div class="flex items-center justify-between">
                 <div class="space-y-1">
-                  <Label class="text-base font-medium">Webhook Notifications</Label>
-                  <p class="text-sm text-muted-foreground">Send alerts to custom endpoints</p>
+                  <Label class="text-base font-medium">{{ t('settings.webhookNotifications') }}</Label>
+                  <p class="text-sm text-muted-foreground">{{ t('settings.sendAlertsCustom') }}</p>
                 </div>
                 <Switch v-model:checked="notificationSettings.webhook" />
               </div>
 
               <div v-if="notificationSettings.webhook" class="ml-6 space-y-3 border-l-2 border-muted pl-4">
                 <div class="space-y-2">
-                  <Label for="webhook-url" class="text-sm">Webhook URL</Label>
+                  <Label for="webhook-url" class="text-sm">{{ t('settings.webhookUrl') }}</Label>
                   <Input 
                     id="webhook-url" 
                     v-model="notificationSettings.webhookUrl" 
-                    placeholder="https://your-webhook-endpoint.com/alerts"
+                    :placeholder="t('settings.webhookPlaceholder')"
                     type="url"
                   />
                 </div>
                 <Button size="sm" variant="outline" @click="testWebhook" class="gap-2">
                   <Zap :size="14" />
-                  Test Webhook
+                  {{ t('settings.testWebhook') }}
                 </Button>
               </div>
             </div>
@@ -185,7 +185,7 @@
             <div class="flex gap-3">
               <Button @click="updateNotifications" :disabled="isUpdating" class="gap-2">
                 <Save :size="16" />
-                {{ isUpdating ? 'Saving...' : 'Save Preferences' }}
+                {{ isUpdating ? t('common.saving') : t('settings.savePreferences') }}
               </Button>
             </div>
           </CardContent>
@@ -198,14 +198,14 @@
           <CardHeader>
             <CardTitle class="flex items-center gap-2">
               <Key :size="20" />
-              API Access
+              {{ t('settings.apiAccess') }}
             </CardTitle>
-            <CardDescription>Manage your API keys and security settings</CardDescription>
+            <CardDescription>{{ t('settings.manageApiKeys') }}</CardDescription>
           </CardHeader>
           <CardContent class="space-y-6">
             <div class="space-y-4">
               <div class="space-y-2">
-                <Label>API Key</Label>
+                <Label>{{ t('settings.apiKey') }}</Label>
                 <div class="flex gap-2">
                   <Input 
                     :value="showApiKey ? user.apiKey : '••••••••••••••••••••••••••••••••'"
@@ -220,34 +220,34 @@
                     <Copy :size="16" />
                   </Button>
                 </div>
-                <p class="text-xs text-muted-foreground">Use this key to authenticate API requests</p>
+                <p class="text-xs text-muted-foreground">{{ t('settings.useKeyAuthenticate') }}</p>
               </div>
 
               <div class="flex gap-3">
                 <Button @click="regenerateApiKey" variant="destructive" class="gap-2">
                   <RefreshCw :size="16" />
-                  Regenerate Key
+                  {{ t('settings.regenerateKey') }}
                 </Button>
                 <Button variant="outline" @click="downloadApiDocs" class="gap-2">
                   <FileText :size="16" />
-                  API Documentation
+                  {{ t('settings.apiDocumentation') }}
                 </Button>
               </div>
             </div>
 
             <div class="space-y-4">
-              <h4 class="text-sm font-medium">API Usage Statistics</h4>
+              <h4 class="text-sm font-medium">{{ t('settings.apiUsageStats') }}</h4>
               <div class="grid gap-4 md:grid-cols-2">
                 <div class="space-y-2">
                   <div class="flex justify-between text-sm">
-                    <span>Requests this month</span>
+                    <span>{{ t('settings.requestsThisMonth') }}</span>
                     <span class="font-medium">45,231</span>
                   </div>
                   <Progress value={75} class="h-2" />
                 </div>
                 <div class="space-y-2">
                   <div class="flex justify-between text-sm">
-                    <span>Rate limit</span>
+                    <span>{{ t('settings.rateLimit') }}</span>
                     <span class="font-medium">1000/hour</span>
                   </div>
                   <Progress value={25} class="h-2" />
@@ -261,39 +261,39 @@
           <CardHeader>
             <CardTitle class="flex items-center gap-2">
               <Shield :size="20" />
-              Security Settings
+              {{ t('settings.securitySettings') }}
             </CardTitle>
-            <CardDescription>Manage your account security and access</CardDescription>
+            <CardDescription>{{ t('settings.manageAccountSecurity') }}</CardDescription>
           </CardHeader>
           <CardContent class="space-y-6">
             <div class="space-y-4">
               <div class="flex items-center justify-between">
                 <div class="space-y-1">
-                  <Label class="text-base font-medium">Two-Factor Authentication</Label>
-                  <p class="text-sm text-muted-foreground">Add an extra layer of security to your account</p>
+                  <Label class="text-base font-medium">{{ t('settings.twoFactorAuth') }}</Label>
+                  <p class="text-sm text-muted-foreground">{{ t('settings.extraSecurityLayer') }}</p>
                 </div>
                 <Switch v-model:checked="securitySettings.twoFactor" />
               </div>
 
               <div class="flex items-center justify-between">
                 <div class="space-y-1">
-                  <Label class="text-base font-medium">Login Notifications</Label>
-                  <p class="text-sm text-muted-foreground">Get notified of new login attempts</p>
+                  <Label class="text-base font-medium">{{ t('settings.loginNotifications') }}</Label>
+                  <p class="text-sm text-muted-foreground">{{ t('settings.notifyLoginAttempts') }}</p>
                 </div>
                 <Switch v-model:checked="securitySettings.loginNotifications" />
               </div>
 
               <div class="flex items-center justify-between">
                 <div class="space-y-1">
-                  <Label class="text-base font-medium">API Rate Limiting</Label>
-                  <p class="text-sm text-muted-foreground">Enable stricter rate limits for API access</p>
+                  <Label class="text-base font-medium">{{ t('settings.apiRateLimiting') }}</Label>
+                  <p class="text-sm text-muted-foreground">{{ t('settings.stricterRateLimits') }}</p>
                 </div>
                 <Switch v-model:checked="securitySettings.rateLimiting" />
               </div>
             </div>
 
             <div class="space-y-4">
-              <h4 class="text-sm font-medium">Recent Activity</h4>
+              <h4 class="text-sm font-medium">{{ t('settings.recentActivity') }}</h4>
               <div class="space-y-3">
                 <div v-for="activity in recentActivity" :key="activity.id" 
                      class="flex items-center justify-between p-3 border rounded-lg">
@@ -326,6 +326,7 @@
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { 
   Card, 
   CardContent, 
@@ -388,6 +389,7 @@ interface ActivityData {
 }
 
 // Reactive state
+const { t } = useI18n()
 const isUpdating = ref(false)
 const showApiKey = ref(false)
 

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
 import { HugeiconsIcon } from '@hugeicons/vue'
-import { ArrowRight01Icon } from '@hugeicons/core-free-icons';
+import { ArrowRight01Icon } from '@hugeicons/core-free-icons'
+import { useI18n } from 'vue-i18n'
 import {
   Collapsible,
   CollapsibleContent,
@@ -30,11 +31,13 @@ defineProps<{
     }[]
   }[]
 }>()
+
+const { t } = useI18n()
 </script>
 
 <template>
   <SidebarGroup>
-    <SidebarGroupLabel>Platform</SidebarGroupLabel>
+    <SidebarGroupLabel>{{ t('sidebar.platform') }}</SidebarGroupLabel>
     <SidebarMenu>
       <Collapsible
         v-for="item in items"

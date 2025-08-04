@@ -3,6 +3,9 @@ export const description = 'A two column login page with a cover image.'
 </script>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 import LoginForm from '../../components/auth/LoginForm.vue'
 </script>
 
@@ -11,8 +14,8 @@ import LoginForm from '../../components/auth/LoginForm.vue'
     <div class="flex flex-col gap-4 p-6 md:p-10">
       <div class="flex justify-center gap-2 md:justify-start">
         <a href="#" class="flex items-center gap-2 font-medium">
-          <img src="/logo.png" alt="Logo" class="h-6 w-6" />
-          moniq.sh
+          <img src="/logo.png" :alt="t('auth.logoAlt')" class="h-6 w-6" />
+          {{ t('auth.logo') }}
         </a>
       </div>
       <div class="flex flex-1 items-center justify-center">
@@ -24,7 +27,7 @@ import LoginForm from '../../components/auth/LoginForm.vue'
     <div class="relative hidden bg-muted lg:block">
       <img
         src="/bg.avif"
-        alt="Image"
+:alt="t('auth.imageAlt')"
         class="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
       >
     </div>

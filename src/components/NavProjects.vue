@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Component } from "vue"
 import { HugeiconsIcon } from '@hugeicons/vue'
+import { useI18n } from 'vue-i18n'
 import {
   Folder01Icon,
   Forward02Icon,
@@ -34,11 +35,12 @@ defineProps<{
 }>()
 
 const { isMobile } = useSidebar()
+const { t } = useI18n()
 </script>
 
 <template>
   <SidebarGroup class="group-data-[collapsible=icon]:hidden">
-    <SidebarGroupLabel>Projects</SidebarGroupLabel>
+    <SidebarGroupLabel>{{ t('sidebar.projects') }}</SidebarGroupLabel>
     <SidebarMenu>
       <SidebarMenuItem v-for="item in projects" :key="item.name">
         <SidebarMenuButton as-child>

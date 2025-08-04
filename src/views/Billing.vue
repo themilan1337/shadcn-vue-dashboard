@@ -2,8 +2,8 @@
   <div class="space-y-6">
     <!-- Header Section -->
     <div>
-      <h1 class="text-3xl font-bold tracking-tight">Billing & Usage</h1>
-      <p class="text-muted-foreground">Manage your subscription and monitor usage</p>
+      <h1 class="text-3xl font-bold tracking-tight">{{ t('billing.title') }}</h1>
+      <p class="text-muted-foreground">{{ t('billing.subtitle') }}</p>
     </div>
 
     <!-- Current Plan Overview -->
@@ -13,9 +13,9 @@
           <div>
             <CardTitle class="flex items-center gap-2">
               <CreditCard :size="20" />
-              Current Plan
+              {{ t('billing.currentPlan') }}
             </CardTitle>
-            <CardDescription>Your active subscription details</CardDescription>
+            <CardDescription>{{ t('billing.subscriptionDetails') }}</CardDescription>
           </div>
           <Badge :variant="getPlanVariant(billing.plan)" class="text-sm px-3 py-1">
             {{ billing.plan.toUpperCase() }}
@@ -25,18 +25,18 @@
       <CardContent>
         <div class="grid gap-4 md:grid-cols-3">
           <div class="space-y-2">
-            <p class="text-sm font-medium text-muted-foreground">Monthly Cost</p>
+            <p class="text-sm font-medium text-muted-foreground">{{ t('billing.monthlyCost') }}</p>
             <p class="text-2xl font-bold">${{ billing.amount }}</p>
           </div>
           <div class="space-y-2">
-            <p class="text-sm font-medium text-muted-foreground">Next Billing</p>
+            <p class="text-sm font-medium text-muted-foreground">{{ t('billing.nextBilling') }}</p>
             <p class="text-lg font-semibold">{{ formatDate(billing.nextBilling) }}</p>
           </div>
           <div class="space-y-2">
-            <p class="text-sm font-medium text-muted-foreground">Status</p>
+            <p class="text-sm font-medium text-muted-foreground">{{ t('common.status') }}</p>
             <div class="flex items-center gap-2">
               <div class="w-2 h-2 bg-green-500 rounded-full" />
-              <span class="text-sm font-medium">Active</span>
+              <span class="text-sm font-medium">{{ t('common.active') }}</span>
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@
         <CardHeader class="pb-3">
           <CardTitle class="text-base flex items-center gap-2">
             <Server :size="16" />
-            Servers
+            {{ t('billing.servers') }}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -67,7 +67,7 @@
         <CardHeader class="pb-3">
           <CardTitle class="text-base flex items-center gap-2">
             <Bell :size="16" />
-            Alerts
+            {{ t('billing.alerts') }}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -85,7 +85,7 @@
         <CardHeader class="pb-3">
           <CardTitle class="text-base flex items-center gap-2">
             <Zap :size="16" />
-            API Calls
+            {{ t('billing.apiCalls') }}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -197,6 +197,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { 
   Card, 
   CardContent, 
@@ -217,6 +218,8 @@ import {
   Receipt, 
   Download
 } from 'lucide-vue-next'
+
+const { t } = useI18n()
 
 // Types
 interface BillingData {
