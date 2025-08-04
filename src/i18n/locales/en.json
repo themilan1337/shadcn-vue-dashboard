@@ -78,7 +78,9 @@
     "minutesAgo": "minutes ago",
     "serverUp": "Up",
     "serverDown": "Down",
-    "memoryUsage": "Memory Usage"
+    "memoryUsage": "Memory Usage",
+    "diskUsage": "Disk Usage",
+    "diskSpace": "Disk Space Distribution"
   },
   "billing": {
     "title": "Billing & Usage",

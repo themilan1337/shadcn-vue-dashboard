@@ -38,7 +38,7 @@
     </div>
     
     <!-- Charts Section -->
-    <div class="grid gap-6 md:grid-cols-2">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       <div class="p-6 border rounded-lg bg-card">
         <h3 class="text-lg font-semibold mb-4">{{ t('dashboard.serverPerformance') }}</h3>
         <LineChart 
@@ -58,6 +58,16 @@
           :labels="timeLabels"
           color="#10b981"
           fill-color="rgba(16, 185, 129, 0.1)"
+        />
+      </div>
+      
+      <div class="p-6 border rounded-lg bg-card">
+        <h3 class="text-lg font-semibold mb-4">{{ t('dashboard.diskUsage') }}</h3>
+        <DoughnutChart 
+          :title="t('dashboard.diskSpace')"
+          :data="diskData"
+          :labels="diskLabels"
+          :colors="diskColors"
         />
       </div>
     </div>
@@ -102,6 +112,7 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import LineChart from '@/components/LineChart.vue'
+import DoughnutChart from '@/components/DoughnutChart.vue'
 
 const { t } = useI18n()
 
@@ -116,5 +127,16 @@ const timeLabels = ref([
   '06:00', '07:00', '08:00', '09:00', '10:00', '11:00',
   '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
   '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'
+])
+
+// Sample data for disk usage
+const diskData = ref([45.2, 28.8, 15.6, 8.4, 2.0])
+const diskLabels = ref(['System Files', 'Applications', 'Documents', 'Media Files', 'Available Space'])
+const diskColors = ref([
+  '#ef4444', // Red for System Files
+  '#3b82f6', // Blue for Applications
+  '#10b981', // Green for Documents
+  '#f59e0b', // Yellow for Media Files
+  '#e5e7eb'  // Gray for Available Space
 ])
 </script>
